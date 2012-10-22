@@ -54,7 +54,16 @@ public class EventDemoListener implements Listener {
 						entityType.getName(), entityType.getTypeId()));
 	}
 
-	@EventHandler(priority = EventPriority.LOW)
+	@EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
+	public void priorityTest(PlayerInteractEvent event) {
+		if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
+			event.getPlayer().sendMessage("click event cancelled");
+			event.setCancelled(true);
+		}
+	}
+
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+	// @EventHandler(priority = EventPriority.HIGH)
 	public void demoEvent(PlayerInteractEvent event) {
 		if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
 			Block b = event.getClickedBlock();
