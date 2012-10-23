@@ -62,6 +62,17 @@ public class EventDemoListener implements Listener {
 		}
 	}
 
+	/*
+	 * if "ignoreCancelled = true" is included in the annotation, the demoEvent
+	 * method below does not run because the lower priority event handler
+	 * (priorityTest) cancels the PlayerInteractEvent event.
+	 * "ignoreCancelled = true" means that the method with that annotation
+	 * ignores cancelled events.
+	 * 
+	 * Use the alternative annotation without "ignoreCancelled = true" and the
+	 * demoEvent method will run even if the event is cancelled---try it!
+	 */
+
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	// @EventHandler(priority = EventPriority.HIGH)
 	public void demoEvent(PlayerInteractEvent event) {
